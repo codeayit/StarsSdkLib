@@ -106,16 +106,34 @@ public class MQTTService extends Service implements SafeHandlerMsgCallback {
         }
     }
 
-    public static void publish(String topic, String msg) {
+    public static boolean publish(String topic, String msg) {
         Integer qos = 2;
         Boolean retained = false;
         try {
             if (client != null && client.isConnected()) {
                 client.publish(topic, msg.getBytes(), qos.intValue(), retained.booleanValue());
+                return true;
             }
         } catch (MqttException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+
+    public static boolean publish(String topic, byte[] payload, int qos, boolean retained) {
+        try {
+            if (client != null && client.isConnected()) {
+                client.publish(topic, payload, qos, retained);
+                return true;
+            }
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean isConnected() {
+        return client != null && client.isConnected();
     }
 
     private MqttConnectOptions initMqttOptions(String userName, String password, String deviceId) {

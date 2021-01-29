@@ -2,6 +2,7 @@ package com.yuchen.starssdk;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
@@ -102,8 +103,19 @@ public class StarsSdkHelper {
         if(null !=sendCommon){
             MQTTService.publish(sendCommon.getMsgTopic(),JSON.toJSONString(sendCommon));
         }
-
     }
+
+    public static boolean publish(String topic, byte[] payload, int qos, boolean retained) {
+        if (!TextUtils.isEmpty(topic) && null!=payload && payload.length>0){
+            return MQTTService.publish(topic, payload, qos, retained);
+        }
+        return false;
+    }
+
+    public static boolean isConnected() {
+       return MQTTService.isConnected();
+    }
+
 
 //    public void publishReport(String msg){
 //        MqttMessageSendCommon sendCommon = MqttMessageSendCommon.createInstance();

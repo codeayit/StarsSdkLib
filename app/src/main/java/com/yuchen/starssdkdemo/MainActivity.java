@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final StarsConfig config = new StarsConfig(StarsConfig.DeviceType.Direct, IotConfigConstant.tenantId,IotConfigConstant.productId,IotConfigConstant.productKey);
         config.setDebug(false);
-
-
         StarsSdkHelper.getInstence().init(this,config);
         StarsSdkHelper.getInstence().registOnIotPlatform(new RegistOnIotPlatformCallBack() {
             @Override
