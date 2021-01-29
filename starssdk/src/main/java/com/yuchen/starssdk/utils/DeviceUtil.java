@@ -125,26 +125,26 @@ public class DeviceUtil {
 
 
 
-    /**
-     * API 26 android O
-     * 获取总共容量大小，包括系统大小
-     */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static long getTotalSize(Context context, String fsUuid) {
-        try {
-            UUID id;
-            if (fsUuid == null) {
-                id = StorageManager.UUID_DEFAULT;
-            } else {
-                id = UUID.fromString(fsUuid);
-            }
-            StorageStatsManager stats = context.getSystemService(StorageStatsManager.class);
-            return stats.getTotalBytes(id);
-        } catch (NoSuchFieldError | NoClassDefFoundError | NullPointerException | IOException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
+//    /**
+//     * API 26 android O
+//     * 获取总共容量大小，包括系统大小
+//     */
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public static long getTotalSize(Context context, String fsUuid) {
+//        try {
+//            UUID id;
+//            if (fsUuid == null) {
+//                id = StorageManager.UUID_DEFAULT;
+//            } else {
+//                id = UUID.fromString(fsUuid);
+//            }
+//            StorageStatsManager stats = context.getSystemService(StorageStatsManager.class);
+//            return stats.getTotalBytes(id);
+//        } catch (NoSuchFieldError | NoClassDefFoundError | NullPointerException | IOException e) {
+//            e.printStackTrace();
+//            return -1;
+//        }
+//    }
 
     public static String getStorageAvail() {
         StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());

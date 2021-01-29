@@ -158,7 +158,6 @@ public class StarsConfig {
             }
             this.changeUrl = API.gatewayChange;
         }
-        LogUtils.d(this.registUrl);
 
     }
 
