@@ -68,6 +68,8 @@ public class StarsSdkHelper {
                 mqttServiceCallBack.messageDeliveryComplete(action.getDeliveryToken());
             }else if (MqttAction.messageArrived.equals(action.getStatus())){
                 mqttServiceCallBack.messageArrived(action.getTopic(),action.getMqttMessage());
+            }else if (MqttAction.connectLost.equals(action.getStatus())){
+                mqttServiceCallBack.connectLost(action.getE());
             }
         }
 
